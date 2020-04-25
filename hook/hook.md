@@ -1,10 +1,12 @@
 # hook에 대해 알아보자아
-hook은?
-기존 함수형 컴포넌트에서의 한계를 극복
+hook은 기존 함수형 컴포넌트에서의 한계를 극복한 기술이다.
+
 - state의 사용
 - lifecycle을 다룰 수 있게 지원
 
-class방식을 지양하고 hook을 통한 함수형 코딩을 지향하려고 하기 때문에 대문을 hook으로 시작해보겠슴.
+> class방식을 지양하고 hook을 통한 함수형 코딩을 지향하려고 하기 때문에 대문을 hook으로 시작해보겠슴.
+
+<br>
 
 ## hook의 기본 useState
 
@@ -40,7 +42,7 @@ function FuncComp(props){
 ## hook의 기본 useEffect
 functional Component에서 class Component의 LifeCycle을 다룰 수 있게 해주는 친구
 
-#### 1. componentDidMount, componentDidUpdate
+### 1. componentDidMount, componentDidUpdate
 
 ```js
 import React, {useState, useEffect} from 'react';
@@ -75,7 +77,7 @@ function FuncComp(props){
 
 <br>
 
-#### 2. CleanUp(componentWillUnmount)
+### 2. CleanUp(componentWillUnmount)
 컴포넌트를 rerendering시킬 때 정리하는 용도로 쓸 수 있음
 ```js
 useEffect(function(){
@@ -92,9 +94,9 @@ useEffect(function(){
 2. rerender : render() -> useEffect() return -> useEffect() 
 
 
-#### Skipping Effect
+### 3. Skipping Effect
 
-성능을 위해서 effect가 호출되는 것을 생략할 수 있게함
+> 성능을 위해서 effect가 호출되는 것을 생략할 수 있게함
 
 componentDidUpdate는 state값이 바뀔 때만 호출이 되는데, 단순한 useEffect는 이전 state와 비교하여 반영하지 않기 때문에 불필요한 effect호출이 생길 수 있다.
 
@@ -121,9 +123,10 @@ return (
         )
 ...
 ```
-`componentDidMount만 쓰기`
+#### 활용) `componentDidMount만 쓰기`
 
 단순히 useEffect의 2번째 인자로써 빈 배열[]을 전달하면 최초 1회 실행되며, return값은 부모컴포넌트에 의해 없어질 때 실행(componentWillUnMount)된다.
+
 ```js
 useEffect(function(){
         console.log("useEffect 실행!")
