@@ -10,3 +10,23 @@ this.setState((prevState)=>{
     }
 })
 ```
+
+<br>
+
+> 정리 나중에 할려고 일단 여기에 씁니다.
+## DOM접근하기
+```js
+onChange = (e) => {
+    this.targetInput.focus();
+}
+...
+targetInput;
+render() {
+    return (
+        <input ref={(c)=>{this.targetInput = c;}}>
+        // 이런식으로 ref를 넣어주게 되면 this."~"의 "~"를 선언하고 사용할 수 있음.
+    )
+}
+
+
+```
