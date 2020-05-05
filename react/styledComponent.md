@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
 ...
 
 <React.Fragment>
-  <GlobalStyle>	//	<-- 추가
+  <GlobalStyle />	//	<-- 추가
   <Button>Hello</Button>
   <Button danger>Hello</Button>
 </React.Fragment>
