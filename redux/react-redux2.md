@@ -21,3 +21,10 @@ import { connect } from 'react-redux';
 - mapStateToProp에는 관련 global state에 기인해서 작성한다.
 - 또한 hook기준 함수형 컴포넌트에도 global state 또는 action함수를 받아서 사용한다.
 - 위의 사항은 왜그런진 모르겠음.. 그냥 하다보니까 저렇게 외웠다.. 나중에 고수가 되면 다시 써야겠다
+
+
+
+## mapStateToProps
+store.getState()를 하게 되면 reducer에서 정의해준 global state가 뜬다.
+
+mapStateToProps함수는 store에서 state를 가져와서 해당 컴포넌트에 props로 불여넣어주는 기능을 한다 
