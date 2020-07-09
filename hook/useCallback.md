@@ -113,3 +113,8 @@ React Devtools의 'Highlight Updates' 체크!
 그런데 지금 보면, input 이 바뀔 때에도 UserList 컴포넌트가 리렌더링이 되고 있지요?
 
 이 부분은 `React.memo`를 사용해서 리소스를 줄일 수 있습니다!
+
+
+
+## 주의사항
+어떤 컴포넌트에 b 와 button 에 onClick 으로 설정해준 함수들은, 해당 함수들을 useCallback 으로 재사용한다고 해서 리렌더링을 막을 수 있는것은 아니므로, 굳이 그렇게 할 필요 없습니다.
