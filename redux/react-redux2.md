@@ -12,7 +12,7 @@ redux는 react와 궁합이 잘맞는(혹은 이를 위해 만들어진) 상태�
 - reducer는 rootReducer로 combine해서 store에 등록해준다!
 - 즉 컴포넌트와 연결되서 소통하는 건 action이고 state(object)를 바꿔주는건 reducer임
 
-## connenct
+## conenct
 ```js
 import { connect } from 'react-redux';
 ```
@@ -21,6 +21,20 @@ import { connect } from 'react-redux';
 - mapStateToProp에는 관련 global state에 기인해서 작성한다.
 - 또한 hook기준 함수형 컴포넌트에도 global state 또는 action함수를 받아서 사용한다.
 - 위의 사항은 왜그런진 모르겠음.. 그냥 하다보니까 저렇게 외웠다.. 나중에 고수가 되면 다시 써야겠다
+
+> connet() 사용 형식
+```js
+import { connect } from 'react-redux'
+import TodoApp from "./components/TodoApp"
+ 
+ // connect 함수를 실행시키고 
+ // TodoApp컴포넌트에서 store에 접근하게 만든다.
+ const Todo = connect();
+ export default Todo(TodoApp);
+ 
+ // 위의 코드를 간단하게 만들면 아래와 같다.
+ export default connect()(TodoApp);
+```
 
 
 
