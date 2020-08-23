@@ -44,3 +44,7 @@ function TestComponent () {
 }
 ...
 ```
+
+## 주의! 👊
+redux는 state가 동기적으로 바뀌는 반면
+useReducer는 비동기적으로 바뀌기 때문에 신경써주어야 한다!
