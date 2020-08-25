@@ -38,11 +38,18 @@ import TodoApp from "./components/TodoApp"
 
 
 
-## mapStateToProps
+## 🔹mapStateToProps
 
 mapStateToProps는 connect함수에 첫번째 인수로 들어가는 함수 혹은 객체다.
 
-mapStateToProps는 기본적으로 store가 업데이트가 될때 마다 자동적으로 호출이 된다.이를 원하지 않는다면 null 혹은 undefined값을 제공해야한다.
+mapStateToProps는 기본적으로 store가 업데이트가 될때 마다 자동적으로 호출이 된다. 이를 원하지 않는다면 null 혹은 undefined값을 제공해야한다.
+
+```js
+// mapStateToProps는 안쓰고 mapDispatchToProps만 쓰고 싶을 때!
+
+export default connect(null, mapDispatchToProps)((Component));
+// 일케 null 값을 줘서 작성합니당
+```
 
 store.getState()를 하게 되면 reducer에서 정의해준 global state가 뜬다.
 
@@ -56,42 +63,57 @@ const mapStateToProps = state => ({ todos: state.todos })
 
 ```js
 // mapStateToProps의 두번째 요소로는 우리가 원하는 객체를 인자로 넘겨주면된다.
-`state와 ownProps모두 순수 객체여야 한다.`
+`state와 ownProps모두 순수 객체여야 한다.` 
+// return object를 해주라는 말!
 const mapStateToProps = (state, ownProps) => ({
-  todo: state.todos[ownProps.id]
+  return { todo: state.todos[ownProps.id] }
 })
 ```
 
 > mapStateToProps를 connect함수에 사용하기
 ```js
-import { connect } from 'react-redux'
-import TodoApp from "./components/TodoApp"
+import { connect } from 'react-redux';
+import TodoApp from "./components/TodoApp";
  
  const mapStateToProps = (state, ownProps) => ({
-  todo: state.todos[ownProps.id]
+    return { todo: state.todos[ownProps.id] }
   })
  
  //connect 첫번째 인자로 mapStateToProps 함수를 제공했다.
  export default connect(mapStateToProps)(TodoApp);
  ```
 
+### 순서 정리 해준다!! 😎
+1. mapStateToProps 함수 작성
+2. 함수내에서 store의 state를 가져와서 return 해줄 수 있음
+3. connet함수를 이용해서 해당 컴포넌트와 연결
+4. 해당 컴포넌트에서 쓰고 싶으면 구조분해해서 props로 가져온다.
 
 
-## mapDispatchToProps
+## 🔹 mapDispatchToProps 
 
 mapDispatchToProps는 connect함수의 두번째 인자로 사용된다.
 
-이것은 기본적으로 store에 접근한 컴포넌트가 store의 상태를 바꾸기 위해
-dispatch를 사용할수 있게 만들어준다.
+간단하게 정리하면 store에 접근한 컴포넌트가 store의 상태를 바꾸기 위해
+`dispatch`를 사용할수 있게 만들어준다!
+
 
 Ex) mapDispatchToProps의 dispatch
-
 ```js
 /* 
 mapDispatchToProps는 첫번째 인자로
-redux의 dispatch를 인자로 사용한다.
+redux의 dispatch를 인자로 사용한다. (TMI : 2번째 인자로 ownProps도 받을 수 있음)
 이를 통해 우리는 store의 상태를 변경할수있다.
 */
+
+const mapDispatchToProps = dispatch => {
+  // 순수 객체를 반환해줘야한다.
+  return { dispatch }
+  // 이렇게 return 해주고 props처럼 받아서 dispatch 쓸 수 있음!
+}
+
+// 그런데! 함수로 작성해서 보내주면 깔끔하다!
+
 const mapDispatchToProps = dispatch => {
   // 순수 객체를 반환해줘야한다.
   return {
